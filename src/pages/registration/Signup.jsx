@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import myContext from '../../context/data/myContext';
 import { toast } from 'react-toastify';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -13,6 +13,7 @@ function Signup(props) {
     const [password, setPassword] = useState("");
 
     const context = useContext(myContext);
+    const navigate = useNavigate();
     const { loading, setLoading } = context;
 
     const signup = async () => {
@@ -34,13 +35,14 @@ function Signup(props) {
             }
             const userRef = collection(fireDB, "users")
             await addDoc(userRef, user);
-            toast.success("Signup Succesfully");
+            toast.success("Signup is succesfull");
             localStorage.setItem('isLogged', 'true');
             props.setIsLogged(true);
             setName("");
             setEmail("");
             setPassword("");
             setLoading(false)
+            navigate("/")
             
         } catch (error) {
             console.log(error)

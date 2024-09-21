@@ -18,7 +18,7 @@ function Allproducts(props) {
     console.log(cartItems)
 
     const addCart = (e, product) => {
-        e.stopPropagation(); // Fix the typo: should be 'stopPropagation'
+        e.stopPropagation();
         
         if (!props.isLogged) {
             navigate('/signup');
@@ -26,7 +26,7 @@ function Allproducts(props) {
         }
     
         dispatch(addToCart(product));
-        toast.success('Added to cart'); // Optionally, make the message more user-friendly
+        toast.success('Added to cart');
     };
     
 
