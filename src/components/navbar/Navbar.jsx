@@ -89,13 +89,13 @@ function Navbar() {
                       Signup
                     </Link>
                   </div>}
-                  <div className="flow-root">
+                  {/* <div className="flow-root">
                     <Link to={'/'} className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer">
                       <img
                         className="inline-block w-10 h-10 rounded-full"
                         src="https://overreacted.io/static/profile-pic-c715447ce38098828758e525a1128b87.jpg"
                         alt="Dan_Abromov" />                                        </Link>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="border-t border-gray-200 px-4 py-6">
@@ -116,11 +116,6 @@ function Navbar() {
       </Transition.Root>
 
       <header className="relative bg-white">
-        {/* <p className="flex h-10 items-center justify-center bg-pink-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8" 
-        style={{ backgroundColor: mode === 'dark' ? 'rgb(62 64 66)' : '', color: mode === 'dark' ? 'white' : '', }}>
-          Get free delivery on orders over ₹300
-        </p> */}
-
         <nav aria-label="Top" className="bg-gray-100 px-4 sm:px-6 lg:px-8 shadow-xl " style={{ backgroundColor: mode === 'dark' ? '#282c34' : '', color: mode === 'dark' ? 'white' : '', }}>
           <div className="">
             <div className="flex h-16 items-center">
@@ -136,7 +131,6 @@ function Navbar() {
 
               </button>
 
-              {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
                 <Link to={'/'} className='flex'>
                   <div className="flex ">
@@ -181,14 +175,14 @@ function Navbar() {
                     <span className="ml-3 block text-sm font-medium" style={{ color: mode === 'dark' ? 'white' : '', }}>INDIA</span>
                   </a>
                 </div> */}
-                <div className="hidden lg:ml-8 lg:flex">
+                {user ? <div className="hidden lg:ml-8 lg:flex">
                   <a href="#" className="flex items-center text-gray-700 ">
                     <img
                       className="inline-block w-10 h-10 rounded-full"
                       src="https://i.pinimg.com/736x/06/f4/5e/06f45e80f49fce7ef77b75dc968658d5.jpg"
                       alt="My-profile" />
                   </a>
-                </div>
+                </div> : <></>}
 
                 <div className="flex lg:ml-6">
                   <button className='' onClick={toggleMode}>
