@@ -7,6 +7,7 @@ import { deleteFromCart } from '../../redux/cartSlice';
 import { toast } from 'react-toastify';
 import { addDoc, collection } from 'firebase/firestore';
 import { fireDB } from '../../fireabase/FirebaseConfig';
+import bunny from '../../assets/rabbit.png';
 
 
 function Cart() {
@@ -39,8 +40,7 @@ function Cart() {
     console.log(temp)
   }, [cartItems])
 
-  const shipping = parseInt(100);
-
+  const shipping = 99;
   const grandTotal = shipping + totalAmout;
   // console.log(grandTotal)
 
@@ -88,7 +88,7 @@ function Cart() {
       amount: parseInt(grandTotal * 100),
       currency: "INR",
       order_receipt: 'order_rcptid_' + name,
-      name: "E-Bharat",
+      name: "Fashmore",
       description: "for testing purpose",
       handler: function (response) {
         console.log(response)
@@ -135,12 +135,12 @@ function Cart() {
   }
   return (
     <Layout >
-      <div className="h-screen bg-gray-100 pt-5 " style={{ backgroundColor: mode === 'dark' ? '#282c34' : '', color: mode === 'dark' ? 'white' : '', }}>
+      {cartItems.length > 0 ? <div className="h-screen bg-gray-100 pt-5 " style={{ backgroundColor: mode === 'dark' ? '#282c34' : '', color: mode === 'dark' ? 'white' : '', }}>
         <h1 className="mb-10 text-center text-2xl font-bold">Bag ({cartItems.length} products)</h1>
         <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0 ">
           <div className="rounded-lg md:w-2/3 flex flex-col overflow-y-auto h-[700px]">
             {cartItems.map((item, index) => {
-              const { brandName, title, price, description, imageUrl } = item;
+              const { brandName, title, price, imageUrl } = item;
               return (
                 <div className="justify-between mb-6 rounded-lg border  drop-shadow-xl bg-white p-6  sm:flex  sm:justify-start" style={{ backgroundColor: mode === 'dark' ? 'rgb(32 33 34)' : '', color: mode === 'dark' ? 'white' : '', }}>
                   <img src={imageUrl} alt="product-image" className="w-full rounded-lg sm:w-40" />
@@ -148,7 +148,6 @@ function Cart() {
                     <div className="mt-5 sm:mt-0">
                       <h2 className="text-sm font-medium text-gray-400" style={{ color: mode === 'dark' ? 'white' : '' }}>{brandName}</h2>
                       <h2 className="text-lg font-bold text-gray-900" style={{ color: mode === 'dark' ? 'white' : '' }}>{title}</h2>
-                      <h2 className="text-sm  text-gray-900" style={{ color: mode === 'dark' ? 'white' : '' }}>{description}</h2>
                       <p className="mt-1 text-xs font-semibold text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>₹{price}</p>
                     </div>
                     <div onClick={() => deleteCart(item)} className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
@@ -169,10 +168,10 @@ function Cart() {
               <p className="text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>Subtotal</p>
               <p className="text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>₹{totalAmout}</p>
             </div>
-            <div className="flex justify-between">
+            {totalAmout > 0 ?<div className="flex justify-between">
               <p className="text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>Shipping</p>
               <p className="text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>₹{shipping}</p>
-            </div>
+            </div> : <></> }
             <hr className="my-4" />
             <div className="flex justify-between mb-3">
               <p className="text-lg font-bold" style={{ color: mode === 'dark' ? 'white' : '' }}>Total</p>
@@ -180,7 +179,6 @@ function Cart() {
                 <p className="mb-1 text-lg font-bold" style={{ color: mode === 'dark' ? 'white' : '' }}>₹{grandTotal}</p>
               </div>
             </div>
-            {/* <Modal  /> */}
             <Modal
               name={name}
               address={address}
@@ -194,7 +192,12 @@ function Cart() {
             />
           </div>
         </div>
+      </div> :
+      <div className = "flex flex-col justify-center items-center font-poppins pt-10 pb-5">
+        <img src = {bunny} className = "w-1/4"/>
+        <p>OOPs!!! Please add some products to your cart</p>
       </div>
+      }
     </Layout>
   )
 }

@@ -48,31 +48,45 @@ function Allproducts(props) {
                 </div>
 
                 <div className="flex flex-wrap -m-4">
-                    {product.filter((obj)=> obj.title.toLowerCase().includes(searchkey))
-                     .filter((obj) => obj.category.toLowerCase().includes(filterType))
-                     .filter((obj) => obj.price.includes(filterPrice)).map((item, index) => {
-                        const { title, price, description, imageUrl,id } = item;
-                        return (
-                            <div onClick={()=> window.location.href = `/productinfo/${id}`} key={index} className="p-4 md:w-1/4  drop-shadow-lg" >
-                                <div className="h-full border-2 hover:shadow-gray-100 hover:shadow-xl transition-shadow duration-300 ease-in-out border-gray-200 border-opacity-60 rounded-2xl overflow-hidden" style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '', }} >
-                                    <div className="flex justify-center cursor-pointer" >
-                                        <img className=" rounded-2xl w-full h-80 p-2" src={imageUrl} alt="blog" />
-                                    </div>
-                                    <div className="px-5 pt-2 pb-5">
-                                        <h1 className="title-font text-md font-medium text-gray-900" style={{ color: mode === 'dark' ? 'white' : '', }}>{title.length > 25 ? `${title.substring(0, 23)}...` : title}</h1>
-                                        <p className="leading-relaxed mb-3 text-sm">{item.brandName == "" || item.brandName == null ? <></> : `By ${item.brandName}`}</p>
-                                        <p className="leading-relaxed mb-4 text-sm" style={{ color: mode === 'dark' ? 'white' : '' }}>₹{price}</p>
-                                        <div className=" flex justify-center">
-                                            <button type="button" 
-                                            onClick={(e)=> addCart(e, item)}
-                                            className="focus:outline-none text-black bg-footerBg hover:text-white focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm w-full py-2">Buy Now</button>
+                    {product.filter((obj) => obj.title.toLowerCase().includes(searchkey.toLowerCase()))
+                        .filter((obj) => obj.category.includes(filterType))
+                        .filter((obj) => filterPrice ? obj.price === filterPrice : true)
+                        .length > 0 
+                        ? product.filter((obj) => obj.title.toLowerCase().includes(searchkey.toLowerCase()))
+                            .filter((obj) => obj.category.includes(filterType))
+                            .filter((obj) => filterPrice ? obj.price === filterPrice : true)
+                            .map((item, index) => {
+                                const { title, price, description, imageUrl, id, brandName } = item;
+                                return (
+                                    <div onClick={() => window.location.href = `/productinfo/${id}`} key={index} className="p-4 md:w-1/4 drop-shadow-lg">
+                                        <div className="h-full border-2 hover:shadow-gray-100 hover:shadow-xl transition-shadow duration-300 ease-in-out border-gray-200 border-opacity-60 rounded-2xl overflow-hidden"
+                                            style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '' }}>
+                                            <div className="flex justify-center cursor-pointer">
+                                                <img className="rounded-2xl w-full h-80 p-2" src={imageUrl} alt="blog" />
+                                            </div>
+                                            <div className="px-5 pt-2 pb-5">
+                                                <h1 className="title-font text-md font-medium text-gray-900" style={{ color: mode === 'dark' ? 'white' : '' }}>
+                                                    {title.length > 25 ? `${title.substring(0, 23)}...` : title}
+                                                </h1>
+                                                <p className="leading-relaxed mb-3 text-sm">
+                                                    {brandName === "" || brandName == null ? null : `By ${brandName}`}
+                                                </p>
+                                                <p className="leading-relaxed mb-4 text-sm" style={{ color: mode === 'dark' ? 'white' : '' }}>₹{price}</p>
+                                                <div className="flex justify-center">
+                                                    <button type="button" 
+                                                        onClick={(e) => addCart(e, item)}
+                                                        className="focus:outline-none text-black bg-footerBg hover:text-white focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm w-full py-2">Buy Now
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-
-                                </div>
-                            </div>
-                        )
-                    })}
+                                )
+                            })
+                        : <div className="w-full text-center py-1">
+                            <p className="text-sm font-semibold font-rubikMono" style={{ color: mode === 'dark' ? 'white' : 'black' }}>No products match your search.</p>
+                        </div>
+                    }
                 </div>
             </div>
         </section >
