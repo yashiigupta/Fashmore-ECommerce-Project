@@ -45,7 +45,7 @@ function ProductInfo(props) {
             return;
         }
         dispatch(addToCart(products))
-        toast.success('add to cart');
+        toast.success('added to cart');
     }
 
     useEffect(() => {
