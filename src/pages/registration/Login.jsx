@@ -16,9 +16,25 @@ function Login() {
     const navigate = useNavigate();
 
     const login = async () => {
-        setLoading(true)
+        setLoading(true);
+    
+        // Input validation
+        if (email === "" || password === "") {
+            setLoading(false);
+            toast.error("All fields are required");
+            return;
+        }
+    
+        // email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setLoading(false);
+            toast.error("Please enter a valid email");
+            return;
+        }
+        
         try {
-            const result = await signInWithEmailAndPassword(auth,email,password);
+            const result = await signInWithEmailAndPassword(auth, email, password);
             toast.success("Login successful", {
                 position: "top-right",
                 autoClose: 2000,
@@ -28,17 +44,23 @@ function Login() {
                 draggable: true,
                 progress: undefined,
                 theme: "colored",
-              })
-            localStorage.setItem('user', JSON.stringify(result))
-            navigate('/')
-            setLoading(false)
+            });
+            localStorage.setItem('user', JSON.stringify(result));
+            navigate('/');
+            setLoading(false);
             
         } catch (error) {
-            console.log(error)
-            setLoading(loading)
+            if (error.code === 'auth/user-not-found') {
+                toast.error("Email does not exist");
+            } else if (error.code === 'auth/wrong-password') {
+                toast.error("Your password is incorrect");
+            } else {
+                toast.error("An error occurred. Please try again.");
+            }
+            setLoading(false);
         }
-
     }
+    
    
     return (
         <div className=' flex justify-center items-center h-screen'>
