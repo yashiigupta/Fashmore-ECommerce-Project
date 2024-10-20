@@ -20,6 +20,8 @@ import UpdateProduct from './pages/admin/page/UpdateProduct';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Allproducts from './pages/allproducts/Allproducts';
+import TrendingProducts from './pages/trendingpage/TrendingProducts';
+import AllUnderProducts from './pages/allunder400/AllUnder';
 
 const ProtectedRoute = ({ children, isLogged }) => {
   const navigate = useNavigate();
@@ -42,6 +44,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/allproducts" element={<Allproducts isLogged = {isLogged} />} />
+          <Route path="/trendyproducts" element={<TrendingProducts isLogged = {isLogged} />} />
+          <Route path="/allunder400" element={<AllUnderProducts isLogged = {isLogged} />} />
           <Route path="/order" element={<Order />} />
           <Route path="/cart" element={
             <ProtectedRoute isLogged={isLogged}>
