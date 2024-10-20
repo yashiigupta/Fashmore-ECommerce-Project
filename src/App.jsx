@@ -51,7 +51,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup setIsLogged = {setIsLogged} />} />
-          <Route path='/productinfo/:id' element={<ProductInfo isLogged = {isLogged} />} />
+          <Route path='/productinfo/:id' element={<ProductInfo />} />
           <Route path='/addproduct' element={<AddProduct />} />
           <Route path='/updateproduct' element={<UpdateProduct />} />
           <Route path="/*" element={<NoPage />} />

@@ -9,13 +9,15 @@ import { addToCart } from '../../redux/cartSlice';
 import { fireDB } from '../../fireabase/FirebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
-function ProductInfo(props) {
+function ProductInfo() {
     const context = useContext(myContext);
     const navigate = useNavigate();
     const { loading, setLoading } = context;
 
     const [products, setProducts] = useState('');
     const [isRed, setIsRed] = useState(false);
+    const user = JSON.parse(localStorage.getItem('user'));
+
 
     const params = useParams()
 
@@ -42,7 +44,7 @@ function ProductInfo(props) {
     // add to cart
     const addCart = (e, products) => {
         e.stopPropagation();
-        if(!props.isLogged) {
+        if(!user) {
             navigate("/signup");
             return;
         }

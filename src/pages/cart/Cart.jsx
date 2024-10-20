@@ -41,11 +41,6 @@ function Cart() {
 
   const shipping = 99;
   const grandTotal = shipping + totalAmout;
-  // console.log(grandTotal)
-
-  /**========================================================================
-   *!                           Payment Intigration
-   *========================================================================**/ 
 
   const [name, setName] = useState("")
   const [address, setAddress] = useState("");
@@ -139,6 +134,7 @@ function Cart() {
         <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0 ">
           <div className="rounded-lg md:w-2/3 flex flex-col overflow-y-auto h-[700px]">
             {cartItems.map((item, index) => {
+              {console.log(item)}
               const { brandName, title, price, imageUrl } = item;
               return (
                 <div className="justify-between mb-6 rounded-lg border  drop-shadow-xl bg-white p-6  sm:flex  sm:justify-start" style={{ backgroundColor: mode === 'dark' ? 'rgb(32 33 34)' : '', color: mode === 'dark' ? 'white' : '', }}>
