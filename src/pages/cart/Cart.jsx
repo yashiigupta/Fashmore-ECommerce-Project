@@ -36,7 +36,6 @@ function Cart() {
       temp = temp + parseInt(cartItem.price)
     })
     setTotalAmount(temp);
-    console.log(temp)
   }, [cartItems])
 
   const shipping = 99;
@@ -85,7 +84,6 @@ function Cart() {
       name: "Fashmore",
       description: "for testing purpose",
       handler: function (response) {
-        console.log(response)
         toast.success('Payment Successful')
 
         const paymentId = response.razorpay_payment_id;
@@ -133,11 +131,10 @@ function Cart() {
         <h1 className="mb-10 text-center text-2xl font-bold">Bag ({cartItems.length} products)</h1>
         <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0 ">
           <div className="rounded-lg md:w-2/3 flex flex-col overflow-y-auto h-[700px]">
-            {cartItems.map((item, index) => {
-              {console.log(item)}
-              const { brandName, title, price, imageUrl } = item;
+            {cartItems.map((item) => {
+              const { id, brandName, title, price, imageUrl } = item;
               return (
-                <div className="justify-between mb-6 rounded-lg border  drop-shadow-xl bg-white p-6  sm:flex  sm:justify-start" style={{ backgroundColor: mode === 'dark' ? 'rgb(32 33 34)' : '', color: mode === 'dark' ? 'white' : '', }}>
+                <div className="justify-between mb-6 rounded-lg border  drop-shadow-xl bg-white p-6  sm:flex  sm:justify-start" style={{ backgroundColor: mode === 'dark' ? 'rgb(32 33 34)' : '', color: mode === 'dark' ? 'white' : '', }} key = {id}>
                   <img src={imageUrl} alt="product-image" className="w-full rounded-lg sm:w-40" />
                   <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                     <div className="mt-5 sm:mt-0">

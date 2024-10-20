@@ -5,6 +5,8 @@ import Filter from '../../components/filter/Filter'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from '../../redux/cartSlice'
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function TrendingProducts() {
     const context = useContext(myContext)
@@ -109,6 +111,7 @@ function TrendingProducts() {
                 </div>
             </div>
         </section >
+        <ToastContainer />
     </Layout>
   )
 }

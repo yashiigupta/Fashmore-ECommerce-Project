@@ -8,14 +8,14 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart(state, action) {
-            const itemWithId = {
-                ...action.payload,
-                id: uuidv4()
-            };
-            state.push(itemWithId);
-        },
+            const id = uuidv4();
+            const newItem = { ...action.payload, id };
+            console.log(newItem);
+            state.push(newItem);    
+        },        
         deleteFromCart(state, action) {
-            return state.filter(item => item.id !== action.payload);
+            // Filter out the item to be deleted by id
+            return state.filter(item => item.id !== action.payload.id);
         }
     }
 });
