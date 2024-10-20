@@ -8,11 +8,11 @@ export default function PayDay()
     navigate('/allproducts');
   }
   return (
-    <div className = "flex mb-[30px] font-poppins">
-      <div className ="h-[500px] flex flex-1" >
-        <img className="w-full hover:scale-102 transition-transform duration-300 ease-in-out" src={yellowgirl} alt="blog" />
+    <div className = "flex mb-[30px] font-poppins px-10 items-center justify-center">
+      <div className="flex items-end h-[400px]">
+        <img className="w-full h-full" src={yellowgirl} alt="blog" />
       </div>
-      <div className = "flex flex-col flex-1 bg-[#F9DD55] justify-center items-center">
+      <div className = "flex flex-col flex-1 bg-[#F9DD55] justify-center items-center h-[400px]">
         <div className=" flex transform rotate-[-3deg] bg-white w-80 h-17 mb-3 font-rubikMono text-center items-center justify-center">
           <p className="font-bold text-5xl transform rotate-[2deg]">PAYDAY</p>
         </div>
