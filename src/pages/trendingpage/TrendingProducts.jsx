@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import Layout from '../../components/layout/Layout'
 import myContext from '../../context/data/myContext'
+import Filter from '../../components/filter/Filter'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from '../../redux/cartSlice'
 import { useNavigate } from "react-router-dom";
@@ -37,6 +38,7 @@ function TrendingProducts(props) {
 
   return (
     <Layout>
+      <Filter />
       <section className="text-gray-600 body-font">
             <div className="container px-5 py-8 md:py-16 mx-auto">
                 <div class="lg:w-1/2 w-full mb-6 lg:mb-10">
