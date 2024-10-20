@@ -14,7 +14,9 @@ function ProductInfo(props) {
     const navigate = useNavigate();
     const { loading, setLoading } = context;
 
-    const [products, setProducts] = useState('')
+    const [products, setProducts] = useState('');
+    const [isRed, setIsRed] = useState(false);
+
     const params = useParams()
 
     const getProductData = async () => {
@@ -35,7 +37,7 @@ function ProductInfo(props) {
     }, [])
 
     const dispatch = useDispatch()
-    const cartItems = useSelector((state) => state.cart)
+    const cartItems = useSelector((state) => state.cart);
 
     // add to cart
     const addCart = (e, products) => {
@@ -50,7 +52,11 @@ function ProductInfo(props) {
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cartItems));
-    }, [cartItems])
+    }, [cartItems]);
+
+    const toggleColor = () => {
+        setIsRed(!isRed); // Toggle between true (red) and false (gray)
+      };
 
     return (
         <Layout>
@@ -179,9 +185,9 @@ function ProductInfo(props) {
                                 <button  onClick={(e)=>addCart(e, products)} className="flex ml-auto text-white bg-footerBg border-0 py-2 px-6 focus:outline-none hover:bg-[#ceb02e] rounded">
                                     Add To Cart
                                 </button>
-                                <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+                                <button className="rounded-full w-10 h-10 bg-gray-100 p-0 border-0 inline-flex items-center justify-center  ml-4" onClick={toggleColor}>
                                     <svg
-                                        fill="currentColor"
+                                        fill={isRed ? 'red' : 'gray'}
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                         strokeWidth={2}
