@@ -50,13 +50,7 @@ function Login() {
             setLoading(false);
             
         } catch (error) {
-            if (error.code === 'auth/user-not-found') {
-                toast.error("Email does not exist");
-            } else if (error.code === 'auth/wrong-password') {
-                toast.error("Your password is incorrect");
-            } else {
-                toast.error("An error occurred. Please try again.");
-            }
+            toast.error(error.message);
             setLoading(false);
         }
     }
