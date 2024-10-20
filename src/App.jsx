@@ -43,9 +43,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/allproducts" element={<Allproducts isLogged = {isLogged} />} />
-          <Route path="/trendyproducts" element={<TrendingProducts isLogged = {isLogged} />} />
-          <Route path="/allunder400" element={<AllUnderProducts isLogged = {isLogged} />} />
+          <Route path="/allproducts" element={<Allproducts />} />
+          <Route path="/trendyproducts" element={<TrendingProducts />} />
+          <Route path="/allunder400" element={<AllUnderProducts />} />
           <Route path="/order" element={<Order />} />
           <Route path="/cart" element={
             <ProtectedRoute isLogged={isLogged}>

@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from '../../redux/cartSlice'
 import { useNavigate } from "react-router-dom";
 
-function Allproducts(props) {
-    const context = useContext(myContext)
+function Allproducts() {
+    const context = useContext(myContext);
     const navigate = useNavigate();
     const { mode, product ,searchkey, setSearchkey,filterType,setFilterType,
         filterPrice,setFilterPrice} = context
@@ -16,10 +16,11 @@ function Allproducts(props) {
     const dispatch = useDispatch()
     const cartItems = useSelector((state)=> state.cart);
 
+    const user = JSON.parse(localStorage.getItem('user'));
+
     const addCart = (e, product) => {
         e.stopPropagation();
-        console.log(props.isLogged);
-        if (!props.isLogged) {
+        if (!user) {
             navigate('/signup');
             return; 
         }

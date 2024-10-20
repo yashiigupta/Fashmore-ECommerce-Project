@@ -6,7 +6,7 @@ import Filter from '../../components/filter/Filter'
 import { addToCart } from '../../redux/cartSlice'
 import { useNavigate } from "react-router-dom";
 
-function AllUnderProducts(props) {
+function AllUnderProducts() {
     const context = useContext(myContext)
     const navigate = useNavigate();
     const { mode, product ,searchkey, setSearchkey,filterType,setFilterType,
@@ -15,10 +15,12 @@ function AllUnderProducts(props) {
     const dispatch = useDispatch()
     const cartItems = useSelector((state)=> state.cart);
 
+    const user = JSON.parse(localStorage.getItem('user'));
+
     const addCart = (e, product) => {
         e.stopPropagation();
         
-        if (!props.isLogged) {
+        if (!user) {
             navigate('/signup');
             return; 
         }
