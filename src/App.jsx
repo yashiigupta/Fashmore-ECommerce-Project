@@ -47,11 +47,7 @@ function App() {
           <Route path="/trendyproducts" element={<TrendingProducts />} />
           <Route path="/allunder400" element={<AllUnderProducts />} />
           <Route path="/order" element={<Order />} />
-          <Route path="/cart" element={
-            <ProtectedRoute isLogged={isLogged}>
-              <Cart />
-            </ProtectedRoute>
-          } />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup setIsLogged = {setIsLogged} />} />

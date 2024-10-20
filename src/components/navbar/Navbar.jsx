@@ -93,17 +93,6 @@ function Navbar() {
         <nav aria-label="Top" className="bg-gray-100 px-4 sm:px-6 lg:px-8 shadow-xl " style={{ backgroundColor: mode === 'dark' ? '#282c34' : '', color: mode === 'dark' ? 'white' : '', }}>
           <div className="">
             <div className="flex h-16 items-center">
-              {/* <button
-                type="button"
-                className="rounded-md bg-white p-2 text-gray-400 lg:hidden"
-                onClick={() => setOpen(true)} style={{ backgroundColor: mode === 'dark' ? 'rgb(80 82 87)' : '', color: mode === 'dark' ? 'white' : '', }}
-              >
-                <span className="sr-only">Open menu</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
-
-              </button> */}
 
               <div className="ml-4 flex lg:ml-0">
                 <Link to={'/'} className='flex'>
@@ -151,7 +140,6 @@ function Navbar() {
                     </svg>
 
                     <span className="ml-1.5 text-sm font-medium text-gray-700 group-" style={{ color: mode === 'dark' ? 'white' : '', }}>{cartItems.length}</span>
-                    <span className="sr-only">items in cart, view bag</span>
                   </Link>
                 </div>
               </div>

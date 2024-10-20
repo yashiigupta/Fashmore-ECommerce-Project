@@ -18,7 +18,6 @@ function Cart() {
   const dispatch = useDispatch()
 
   const cartItems = useSelector((state) => state.cart);
-  console.log(cartItems)
 
   const deleteCart = (item) => {
     dispatch(deleteFromCart(item));
@@ -202,4 +201,4 @@ function Cart() {
   )
 }
 
-export default Cart
+export default Cart;
