@@ -14,14 +14,13 @@ function TrendingProducts(props) {
 
     const dispatch = useDispatch()
     const cartItems = useSelector((state)=> state.cart);
-    console.log(cartItems)
 
     const addCart = (e, product) => {
         e.stopPropagation();
         
         if (!props.isLogged) {
             navigate('/signup');
-            return; 
+            return;
         }
     
         dispatch(addToCart(product));
@@ -34,7 +33,13 @@ function TrendingProducts(props) {
     }, [cartItems])
     useEffect(() => {
         window.scrollTo(0, 0)
-    }, [])
+    }, []);
+
+    // to refresh the filters applied on the previous pages if any
+    useEffect(() => {
+        setFilterPrice('');
+        setFilterType('');
+    }, []);
 
   return (
     <Layout>

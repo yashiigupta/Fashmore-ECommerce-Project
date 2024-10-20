@@ -35,6 +35,11 @@ function AllUnderProducts(props) {
         window.scrollTo(0, 0)
     }, [])
 
+    useEffect(() => {
+        setFilterPrice('');
+        setFilterType('');
+    }, []);
+
   return (
     <Layout>
       <Filter />
